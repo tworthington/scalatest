@@ -1,4 +1,5 @@
 package com.beis.application
+import scala.collection.mutable.HashMap
 
 class Store(items:Array[Fruit])
 {
@@ -7,6 +8,25 @@ class Store(items:Array[Fruit])
 
   def bill(items: String) : (Double) =
   {
-    "([^,]+)".r.findAllIn(items).foldLeft(0.0)((sum,item)=>sum+(stock(item).price))
+    val counts=new HashMap[String,Int]
+    var discount:Double=0.0
+    val commaParse="([^,]+)".r
+    val baseCharge=commaParse.findAllIn(items).foldLeft(0.0)((sum,item)=>sum+(stock(item).price))
+
+    commaParse.findAllIn(items).foreach(name=>
+      if(counts.isDefinedAt(name))
+      {
+        counts(name)+=1
+      }
+      else
+      {
+        counts(name)=1
+      })
+
+    counts.keys.foreach(name=>
+      discount=discount+stock(name).discountFor(counts(name)))
+
+
+    return baseCharge-discount
   }
 }
