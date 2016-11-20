@@ -26,7 +26,6 @@ class Store(items:Array[Fruit])
     counts.keys.foreach(name=>
       discount=discount+stock(name).discountFor(counts(name)))
 
-
-    return baseCharge-discount
+    return math.rint((baseCharge-discount)*100)/100
   }
 }
