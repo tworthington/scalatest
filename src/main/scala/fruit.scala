@@ -5,5 +5,3 @@ class Fruit(val name: String, val price: Double, val offer: Int =0)
 {
   def discountFor(n:Int):(Double) = (n/offer)*price
 }
-
-
