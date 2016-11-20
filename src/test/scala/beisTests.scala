@@ -49,7 +49,7 @@ class BeisTests extends FunSuite with BeforeAndAfter
     assert(item.discountFor(1)===0)
   }
 
-  test("Three Oranges give rebate equal to one apple")
+  test("Three Oranges give rebate equal to one orange")
   {
     val item=shop.stock("Orange")
     assert(item.discountFor(3)===item.price)
@@ -60,4 +60,35 @@ class BeisTests extends FunSuite with BeforeAndAfter
     val item=shop.stock("Orange")
     assert(item.discountFor(2)===0)
   }
+
+  test("Two apples costs same as one apple")
+  {
+    val item=shop.stock("Apple")
+    assert(shop.bill("Apple,Apple")===item.price)
+  }
+
+  test("One apple is normal price")
+  {
+    val item=shop.stock("Apple")
+    assert(shop.bill("Apple")===item.price)
+  }
+
+  test("Three Oranges costs same as 2")
+  {
+    val item=shop.stock("Orange")
+    assert(shop.bill("Orange,Orange,Orange")===item.price*2)
+  }
+
+  test("Two oranges also same as 2")
+  {
+    val item=shop.stock("Orange")
+    assert(shop.bill("Orange,Orange,Orange")===item.price*2)
+  }
+
+  test("1dz oranges cost £2")
+  {
+    val item=shop.stock("Orange")
+    assert(shop.bill("Orange,Orange,Orange,Orange,Orange,Orange,Orange,Orange,Orange,Orange,Orange,Orange")===2)
+  }
+
 }
