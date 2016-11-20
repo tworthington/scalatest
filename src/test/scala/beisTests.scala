@@ -29,7 +29,7 @@ class BeisTests extends FunSuite with BeforeAndAfter
 
   test("Apple,Apple,Orange,Apple is £2.05")
   {
-    assert(shop.bill("Apple,Apple,Orange,Apple")===2.05)
+    assert(shop.bill("Apple,Apple,Orange,Apple")===1.45)
   }
 
   test("Apple has offer rate of 2")
