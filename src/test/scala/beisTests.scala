@@ -8,7 +8,8 @@ class BeisTests extends FunSuite with BeforeAndAfter
 
   before
   {
-    shop=new Store(Array(new Fruit("Apple",.60), new Fruit("Orange",.25)))
+    shop=new Store(Array(new Fruit("Apple",.60,2),
+      new Fruit("Orange",.25,3)))
   }
 
   test("Empty string is 0p")
@@ -29,5 +30,10 @@ class BeisTests extends FunSuite with BeforeAndAfter
   test("Apple,Apple,Orange,Apple is £2.05")
   {
     assert(shop.bill("Apple,Apple,Orange,Apple")===2.05)
+  }
+
+  test("Apple has offer rate of 2")
+  {
+    assert(shop.stock("Apple").offer===2)
   }
 }
