@@ -25,4 +25,9 @@ class BeisTests extends FunSuite with BeforeAndAfter
   {
     assert(shop.bill("Orange")===.25)
   }
+
+  test("Apple,Apple,Orange,Apple is £2.05")
+  {
+    assert(shop.bill("Apple,Apple,Orange,Apple")===2.05)
+  }
 }
